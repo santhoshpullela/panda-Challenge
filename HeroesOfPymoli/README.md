@@ -1,4 +1,16 @@
 
+Observed Trends:
+1. Males not only the make up over 80% of the players of this game, the are also responsible for over 80% of the revenue.
+2. Out of the 573 players, each player has spend under 20 dollars on items.
+3. The 20-24 age bracket more revenue than any other bracket, but the 25-29 age group, on average, purchases more expensive items.
+4. The Retribution Axe not only appears in the most popular item list, it is priced almost 2 dollars more than other popular items on that list and is the item that has generated the most revenue.
+5. Other than the Retribution Axe, the most popular items list generates items that are priced below the average purcahse price.
+
+NOTE:
+1. The age bins are divided in 10 instead of 4, so that data trends can be analyzed more accurately.
+2. To show the normalized total, i have used 0-1 scale (feature scaling method) because when it comes to real time data visualization and to visualize the data where the difference of the value could be 1000 to 20000 then 0-1 scale would be more scalable than the regular normalization.Also prepared supporting documentation from google search. 
+
+
 
 ```python
 import pandas as pd
@@ -21,17 +33,17 @@ game_df.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -110,17 +122,17 @@ total_players_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -163,17 +175,17 @@ purc_analysis_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -217,17 +229,17 @@ gender_analysis
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -285,17 +297,17 @@ gender_purchase_analysis
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -346,8 +358,8 @@ gender_purchase_analysis
 
 ```python
 #Age Analysis
-bins = [0, 9, 14, 19, 100]
-range_names = ['< 10', '10 - 14', '15 -19', '20+']
+bins = [0, 9, 14, 19, 24, 29, 34, 39, 100]
+range_names = ['< 10', '10 - 14', '15 -19', '20 - 24', '25 - 29', '30 - 34', '35 - 39', '40+']
 game_new_df = game_df
 game_new_df["Age Range"] = pd.cut(game_new_df["Age"], bins, labels=range_names)
 age_df = game_new_df.drop_duplicates(subset=['SN'],keep='first')
@@ -364,17 +376,17 @@ age_analysis_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -407,9 +419,29 @@ age_analysis_pd
       <td>100</td>
     </tr>
     <tr>
-      <th>20+</th>
-      <td>75.22%</td>
-      <td>431</td>
+      <th>20 - 24</th>
+      <td>45.20%</td>
+      <td>259</td>
+    </tr>
+    <tr>
+      <th>25 - 29</th>
+      <td>15.18%</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>30 - 34</th>
+      <td>8.20%</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>35 - 39</th>
+      <td>4.71%</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>40+</th>
+      <td>1.92%</td>
+      <td>11</td>
     </tr>
   </tbody>
 </table>
@@ -441,17 +473,17 @@ age_purchase_analysis_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -477,28 +509,56 @@ age_purchase_analysis_pd
       <td>28</td>
       <td>$2.98</td>
       <td>$83.46</td>
-      <td>0.000000</td>
+      <td>0.032118</td>
     </tr>
     <tr>
       <th>10 - 14</th>
       <td>35</td>
       <td>$2.77</td>
       <td>$96.95</td>
-      <td>0.008246</td>
+      <td>0.046702</td>
     </tr>
     <tr>
       <th>15 -19</th>
       <td>133</td>
       <td>$2.91</td>
       <td>$386.42</td>
-      <td>0.185179</td>
+      <td>0.359635</td>
     </tr>
     <tr>
-      <th>20+</th>
-      <td>584</td>
-      <td>$2.94</td>
-      <td>$1719.50</td>
+      <th>20 - 24</th>
+      <td>336</td>
+      <td>$2.91</td>
+      <td>$978.77</td>
       <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25 - 29</th>
+      <td>125</td>
+      <td>$2.96</td>
+      <td>$370.33</td>
+      <td>0.342241</td>
+    </tr>
+    <tr>
+      <th>30 - 34</th>
+      <td>64</td>
+      <td>$3.08</td>
+      <td>$197.25</td>
+      <td>0.155132</td>
+    </tr>
+    <tr>
+      <th>35 - 39</th>
+      <td>42</td>
+      <td>$2.84</td>
+      <td>$119.40</td>
+      <td>0.070971</td>
+    </tr>
+    <tr>
+      <th>40+</th>
+      <td>17</td>
+      <td>$3.16</td>
+      <td>$53.75</td>
+      <td>0.000000</td>
     </tr>
   </tbody>
 </table>
@@ -527,13 +587,13 @@ top_spender_analysis_pd
 
 ```
 
-    C:\Users\santo\Anaconda3\envs\PythonData\lib\site-packages\ipykernel_launcher.py:13: SettingWithCopyWarning: 
+    C:\Users\santo\Anaconda3\lib\site-packages\ipykernel_launcher.py:13: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
     See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
       del sys.path[0]
-    C:\Users\santo\Anaconda3\envs\PythonData\lib\site-packages\ipykernel_launcher.py:14: SettingWithCopyWarning: 
+    C:\Users\santo\Anaconda3\lib\site-packages\ipykernel_launcher.py:14: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
@@ -545,17 +605,17 @@ top_spender_analysis_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -622,7 +682,7 @@ item_price_pd = item_analysis_pd["Purchase Price"].values.astype(float)
 item_analysis_pd["Price"] = item_price_pd
 new_item_analysis_pd = item_analysis_pd[["Purchase Count","Price","Total Purchase Value"]]
 total_item_analysis_pd = new_item_analysis_pd.sort_values("Purchase Count",ascending = False)
-top_item_analysis_pd = total_item_analysis_pd.head(5)
+top_item_analysis_pd = total_item_analysis_pd.head(6)
 
 top_item_analysis_pd["Price"] = top_item_analysis_pd["Price"].map("${:.2f}".format)
 top_item_analysis_pd["Total Purchase Value"] = top_item_analysis_pd["Total Purchase Value"].map("${:.2f}".format)
@@ -632,13 +692,13 @@ top_item_analysis_pd
 
 ```
 
-    C:\Users\santo\Anaconda3\envs\PythonData\lib\site-packages\ipykernel_launcher.py:13: SettingWithCopyWarning: 
+    C:\Users\santo\Anaconda3\lib\site-packages\ipykernel_launcher.py:13: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
     See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
       del sys.path[0]
-    C:\Users\santo\Anaconda3\envs\PythonData\lib\site-packages\ipykernel_launcher.py:14: SettingWithCopyWarning: 
+    C:\Users\santo\Anaconda3\lib\site-packages\ipykernel_launcher.py:14: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
@@ -650,17 +710,17 @@ top_item_analysis_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -716,6 +776,13 @@ top_item_analysis_pd
       <td>$1.49</td>
       <td>$13.41</td>
     </tr>
+    <tr>
+      <th>34</th>
+      <th>Retribution Axe</th>
+      <td>9</td>
+      <td>$4.14</td>
+      <td>$37.26</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -732,13 +799,13 @@ top_item_analysis_purc_pd["Total Purchase Value"] = top_item_analysis_purc_pd["T
 top_item_analysis_purc_pd
 ```
 
-    C:\Users\santo\Anaconda3\envs\PythonData\lib\site-packages\ipykernel_launcher.py:4: SettingWithCopyWarning: 
+    C:\Users\santo\Anaconda3\lib\site-packages\ipykernel_launcher.py:4: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
     See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
       after removing the cwd from sys.path.
-    C:\Users\santo\Anaconda3\envs\PythonData\lib\site-packages\ipykernel_launcher.py:5: SettingWithCopyWarning: 
+    C:\Users\santo\Anaconda3\lib\site-packages\ipykernel_launcher.py:5: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
@@ -750,17 +817,17 @@ top_item_analysis_purc_pd
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">

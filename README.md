@@ -1,2 +1,0 @@
-# panda-Challenge
-Pandas Exercise
